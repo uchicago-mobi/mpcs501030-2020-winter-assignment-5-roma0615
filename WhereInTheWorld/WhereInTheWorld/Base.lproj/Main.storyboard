@@ -1,24 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="WhereInTheWorld" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UK5-9T-T9f">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mCz-5X-oF8" customClass="DetailView" customModule="WhereInTheWorld" customModuleProvider="target">
+                                <rect key="frame" x="20" y="58" width="374" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVB-mK-eVt">
+                                        <rect key="frame" x="16" y="16" width="314" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="4Ym-Ak-Ldu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="20"/>
+                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Description" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ED2-97-LO4">
+                                        <rect key="frame" x="16" y="44" width="342" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGI-16-8H1">
+                                        <rect key="frame" x="336" y="16" width="22" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="yGI-16-8H1" secondAttribute="height" multiplier="1:1" id="1oa-ax-I4q"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="star" catalog="system"/>
+                                        <connections>
+                                            <action selector="onFavoriteButton:" destination="mCz-5X-oF8" eventType="touchUpInside" id="P9t-E5-8eU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="IlS-AR-fyu"/>
+                                    <constraint firstItem="ED2-97-LO4" firstAttribute="leading" secondItem="mCz-5X-oF8" secondAttribute="leading" constant="16" id="Lx4-vl-EKj"/>
+                                    <constraint firstAttribute="trailing" secondItem="ED2-97-LO4" secondAttribute="trailing" constant="16" id="P9b-AM-yss"/>
+                                    <constraint firstItem="yGI-16-8H1" firstAttribute="height" secondItem="EVB-mK-eVt" secondAttribute="height" id="Rvp-Ti-e9G"/>
+                                    <constraint firstItem="yGI-16-8H1" firstAttribute="top" secondItem="mCz-5X-oF8" secondAttribute="top" constant="16" id="WzI-EG-Rsk"/>
+                                    <constraint firstItem="EVB-mK-eVt" firstAttribute="leading" secondItem="mCz-5X-oF8" secondAttribute="leading" constant="16" id="YWZ-TH-XRT"/>
+                                    <constraint firstItem="yGI-16-8H1" firstAttribute="leading" secondItem="EVB-mK-eVt" secondAttribute="trailing" constant="6" id="hVb-06-v9B"/>
+                                    <constraint firstAttribute="trailing" secondItem="yGI-16-8H1" secondAttribute="trailing" constant="16" id="mhv-HS-ce7"/>
+                                    <constraint firstItem="EVB-mK-eVt" firstAttribute="top" secondItem="mCz-5X-oF8" secondAttribute="top" constant="16" id="q4l-sp-VlL"/>
+                                    <constraint firstAttribute="bottom" secondItem="ED2-97-LO4" secondAttribute="bottom" constant="16" id="umK-AA-2KM"/>
+                                    <constraint firstItem="ED2-97-LO4" firstAttribute="top" secondItem="EVB-mK-eVt" secondAttribute="bottom" constant="6" id="xbf-k9-SvW"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="descriptionBox" destination="ED2-97-LO4" id="6bd-d9-TTg"/>
+                                    <outlet property="favoriteButton" destination="yGI-16-8H1" id="RUG-j8-na5"/>
+                                    <outlet property="titleLabel" destination="EVB-mK-eVt" id="GCp-nq-5Y7"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="UK5-9T-T9f" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7mf-Mr-VMB"/>
+                            <constraint firstItem="mCz-5X-oF8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="NHM-kc-dnv"/>
+                            <constraint firstAttribute="trailing" secondItem="UK5-9T-T9f" secondAttribute="trailing" id="QDW-hD-2OT"/>
+                            <constraint firstItem="mCz-5X-oF8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="14" id="Zl8-Vo-MAj"/>
+                            <constraint firstItem="UK5-9T-T9f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nFu-qa-MtP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mCz-5X-oF8" secondAttribute="trailing" constant="20" id="pYU-9G-GtU"/>
+                            <constraint firstAttribute="bottom" secondItem="UK5-9T-T9f" secondAttribute="bottom" id="raq-Ju-blQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="detailView" destination="mCz-5X-oF8" id="vU1-eW-zMy"/>
+                        <outlet property="mapView" destination="UK5-9T-T9f" id="w09-6v-rt9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star" catalog="system" width="64" height="58"/>
+    </resources>
 </document>
