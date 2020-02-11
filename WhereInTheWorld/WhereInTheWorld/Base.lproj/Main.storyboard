@@ -51,6 +51,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2cK-hR-b4G"/>
                                     <constraint firstAttribute="height" constant="100" id="IlS-AR-fyu"/>
                                     <constraint firstItem="ED2-97-LO4" firstAttribute="leading" secondItem="mCz-5X-oF8" secondAttribute="leading" constant="16" id="Lx4-vl-EKj"/>
                                     <constraint firstAttribute="trailing" secondItem="ED2-97-LO4" secondAttribute="trailing" constant="16" id="P9b-AM-yss"/>
@@ -63,24 +64,67 @@
                                     <constraint firstAttribute="bottom" secondItem="ED2-97-LO4" secondAttribute="bottom" constant="16" id="umK-AA-2KM"/>
                                     <constraint firstItem="ED2-97-LO4" firstAttribute="top" secondItem="EVB-mK-eVt" secondAttribute="bottom" constant="6" id="xbf-k9-SvW"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2cK-hR-b4G"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="2cK-hR-b4G"/>
+                                        <exclude reference="IlS-AR-fyu"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="descriptionBox" destination="ED2-97-LO4" id="6bd-d9-TTg"/>
                                     <outlet property="favoriteButton" destination="yGI-16-8H1" id="RUG-j8-na5"/>
                                     <outlet property="titleLabel" destination="EVB-mK-eVt" id="GCp-nq-5Y7"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOJ-Qd-VMD" userLabel="Favorites Button">
+                                <rect key="frame" x="0.0" y="796" width="414" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="LPl-ye-Nda">
+                                        <variation key="heightClass=compact" constant="60"/>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="20"/>
+                                <state key="normal" title="Favorites">
+                                    <color key="titleColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EOJ-Qd-VMD" secondAttribute="trailing" id="0Bk-WS-sBp"/>
                             <constraint firstItem="UK5-9T-T9f" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7mf-Mr-VMB"/>
-                            <constraint firstItem="mCz-5X-oF8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="NHM-kc-dnv"/>
+                            <constraint firstItem="mCz-5X-oF8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="NHM-kc-dnv">
+                                <variation key="heightClass=compact" constant="10"/>
+                            </constraint>
+                            <constraint firstItem="EOJ-Qd-VMD" firstAttribute="top" secondItem="mCz-5X-oF8" secondAttribute="bottom" constant="20" id="OLA-oY-Mdr"/>
                             <constraint firstAttribute="trailing" secondItem="UK5-9T-T9f" secondAttribute="trailing" id="QDW-hD-2OT"/>
                             <constraint firstItem="mCz-5X-oF8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="14" id="Zl8-Vo-MAj"/>
                             <constraint firstItem="UK5-9T-T9f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nFu-qa-MtP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mCz-5X-oF8" secondAttribute="trailing" constant="20" id="pYU-9G-GtU"/>
                             <constraint firstAttribute="bottom" secondItem="UK5-9T-T9f" secondAttribute="bottom" id="raq-Ju-blQ"/>
+                            <constraint firstAttribute="bottom" secondItem="EOJ-Qd-VMD" secondAttribute="bottom" id="stA-Bh-zUM"/>
+                            <constraint firstItem="EOJ-Qd-VMD" firstAttribute="top" secondItem="mCz-5X-oF8" secondAttribute="bottom" constant="20" id="t2j-4d-FEf"/>
+                            <constraint firstItem="EOJ-Qd-VMD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="utJ-fh-48n"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="OLA-oY-Mdr"/>
+                                <exclude reference="t2j-4d-FEf"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="pYU-9G-GtU"/>
+                                <include reference="OLA-oY-Mdr"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="detailView" destination="mCz-5X-oF8" id="vU1-eW-zMy"/>
