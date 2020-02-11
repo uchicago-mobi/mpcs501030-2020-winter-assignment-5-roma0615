@@ -20,9 +20,12 @@ class DetailView: UIView {
     }
     
     @IBAction func onFavoriteButton(_ sender: Any) {
-        print("TOGGLED!")
         favoriteButton.isSelected.toggle()
     }
     
+    func show(_ name: String?, description: String?) {
+        titleLabel.text = name
+        descriptionBox.text = description
+    }
 
 }
