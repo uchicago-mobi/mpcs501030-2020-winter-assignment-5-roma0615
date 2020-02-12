@@ -14,6 +14,8 @@ class DetailView: UIView {
     @IBOutlet var descriptionBox: UITextView!
     @IBOutlet var favoriteButton: UIButton!
     
+    weak var delegate: PlacesFavoritesDelegate?
+    
     override func awakeFromNib() {
         self.layer.cornerRadius = 8
         favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .selected)
@@ -21,11 +23,17 @@ class DetailView: UIView {
     
     @IBAction func onFavoriteButton(_ sender: Any) {
         favoriteButton.isSelected.toggle()
+        if favoriteButton.isSelected {
+            delegate?.didFavoriteAnnotation()
+        } else {
+            delegate?.didUnfavoriteAnnotation()
+        }
     }
     
-    func show(_ name: String?, description: String?) {
-        titleLabel.text = name
-        descriptionBox.text = description
+    func show(_ ann: Place) {
+        titleLabel.text = ann.name
+        descriptionBox.text = ann.longDescription
+        favoriteButton.isSelected = delegate?.isFavorite(ann) ?? false
     }
 
 }
