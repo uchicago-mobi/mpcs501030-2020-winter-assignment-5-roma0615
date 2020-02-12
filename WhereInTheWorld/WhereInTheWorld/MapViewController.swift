@@ -19,7 +19,6 @@ struct PlaceData: Codable {
     var description: String?
     var lat: Double
     var long: Double
-    var type: Int
 }
 
 class MapViewController: UIViewController {
@@ -28,18 +27,19 @@ class MapViewController: UIViewController {
     @IBOutlet var detailView: DetailView!
     
     var selectedAnnotation: Place? = nil
-    // https://dmitripavlutin.com/concise-initialization-of-collections-in-swift/
-    var favorites: [Place] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // load favorites
+        DataManager.instance.loadAnnotationsFromPlist()
+        loadPlacesData()
+        
         // customize map view
         mapView.showsCompass = false
         mapView.pointOfInterestFilter = .excludingAll
-        mapView.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 42, longitude: -88), latitudinalMeters: 495000, longitudinalMeters: 190000)
+        mapView.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 41.94, longitude: -87.65), latitudinalMeters: 49500, longitudinalMeters: 19000)
         mapView.delegate = self
-        loadPlacesData()
         
         // set detail view delegate
         detailView.delegate = self
@@ -57,7 +57,10 @@ class MapViewController: UIViewController {
         // create annotations
         if let places = data?.places {
             for place in places {
-                let annotation = Place(name: place.name, description: place.description, lat: place.lat, long: place.long, type: place.type)
+                var annotation = Place(name: place.name, description: place.description, lat: place.lat, long: place.long)
+                if DataManager.instance.contains(name: place.name), let ann = DataManager.instance.getFavorite(byName: place.name) {
+                    annotation = ann
+                }
                 mapView.addAnnotation(annotation)
             }
         }
@@ -86,35 +89,40 @@ extension MapViewController: MKMapViewDelegate {
         guard let annotation = view.annotation as? Place else { return }
         show(annotation)
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        return PlaceMarkerView()
+    }
 }
 
 extension MapViewController: PlacesFavoritesDelegate {
     var count: Int {
         get {
-            favorites.count
+            DataManager.instance.numFavorites()
         }
     }
     
     func didFavoriteAnnotation() {
         if let ann = selectedAnnotation {
-            favorites.append(ann)
+            DataManager.instance.addFavorite(ann)
         }
     }
     func didUnfavoriteAnnotation() {
-        if let ann = selectedAnnotation, let i = favorites.firstIndex(of: ann) {
-            favorites.remove(at: i)
+        if let ann = selectedAnnotation {
+            DataManager.instance.removeFavorite(ann)
         }
     }
     func isFavorite(_ ann: Place) -> Bool {
-        return favorites.contains(ann)
+        return DataManager.instance.contains(ann)
     }
-    func getFavoriteAt(index: Int) -> Place {
-        return favorites[index]
+    func getFavorite(at index: Int) -> Place? {
+        return DataManager.instance.getFavorite(at: index)
     }
     
+    // this is the equivalent of favoritePlace(name:) from the instructions
     func didSelectAnnotation(_ annotation: Place) {
         // center the map on the annotation
-        mapView.setCenter(annotation.coordinate, animated: true)
+        mapView.setRegion(MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 49500, longitudinalMeters: 19000), animated: true)
         mapView.selectAnnotation(annotation, animated: true)
         
         // and display it in detail view

@@ -44,7 +44,7 @@ extension FavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FavoriteTableViewCell
-        guard let ann = delegate?.getFavoriteAt(index: indexPath.row) else { return cell }
+        guard let ann = delegate?.getFavorite(at: indexPath.row) else { return cell }
         cell.label?.text = ann.name
         cell.annotation = ann
         return cell

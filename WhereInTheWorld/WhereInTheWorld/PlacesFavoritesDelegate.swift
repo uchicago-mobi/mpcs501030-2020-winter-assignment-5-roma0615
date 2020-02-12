@@ -14,5 +14,5 @@ protocol PlacesFavoritesDelegate: class {
     func didUnfavoriteAnnotation()
     func didSelectAnnotation(_ annotation: Place)
     func isFavorite(_ ann: Place) -> Bool
-    func getFavoriteAt(index: Int) -> Place
+    func getFavorite(at index: Int) -> Place?
 }

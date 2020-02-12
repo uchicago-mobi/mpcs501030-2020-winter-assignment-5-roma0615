@@ -16,7 +16,7 @@ class Place: MKPointAnnotation {
     // description
     var longDescription: String?
     
-    init(name: String, description: String?, lat: Double, long: Double, type: Int) {
+    init(name: String, description: String?, lat: Double, long: Double) {
         self.name = name
         self.longDescription = description
         super.init()
